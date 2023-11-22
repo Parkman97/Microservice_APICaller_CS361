@@ -19,23 +19,26 @@ while True:
                     data = data.split(',')
                     
                     if data[0] == 'Article':
-                            link = "https://api.spaceflightnewsapi.net/v4/articles/?"
+                        link = "https://api.spaceflightnewsapi.net/v4/articles/?"
                     else:
                         link = "https://api.spaceflightnewsapi.net/v4/blogs/?"
                     
-                    x=1
-                    while x <= len(data) - 1:
+                    
+                    order = [1, 4, 3, 2]
+
+                    for x in order:
                         if data[x] != '':
+                            print([x])
+                            print(data[x])
                             if x == 1:
                               link += ('has_launch=' + data[x]) #1 
 
                             if x == 2:
-                                if int(data[x+2]) > 10 or "":  #2
-                                    data[x+2] = 10
                                 if 'has_launch' not in link:
-                                    link += ('limit=' + data[x+2])
+                                    link += ('news_site=' + data[x])
+                                    
                                 else:
-                                   link += ('&limit=' + data[x+2])
+                                   link += ('&news_site=' + data[x])
                             
                             if x == 3: #3
                                 if 'news_site' not in link and 'has_launch' not in link:
@@ -45,14 +48,15 @@ while True:
                                     link += ('&published_at_gte=' + data[x])
 
                             if x == 4:
+                                if int(data[x]) > 10 or "":  #2
+                                    data[x] = 10
                                 if 'limit' not in link and 'has_launch' not in link and 'published_at_gte' not in link:
-                                    link += ('news_site=' + data[x-2])
+                                    link += ('limit=' + data[x])
                                 
                                 else:
-                                     link += ('&news_site=' + data[x-2])
-                                    
-                        
-                        x += 1
+                                     link += ('&limit=' + data[x])
+                        else:
+                            execute_code = False
                     
                     link = link.replace(" ", "")
                     response = requests.get(link)

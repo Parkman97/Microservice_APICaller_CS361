@@ -3,7 +3,7 @@ var net = require('net');
 var client = new net.Socket();
 client.connect(65432, '127.0.0.1', function() {
     console.log('Connected');
-    client.write('Article, True,Samsprintingclub, 2023-11-15, 5');
+    client.write('blogs,,, 2023-11-15, 5');
 });
 
 client.on('data', function(data) {
