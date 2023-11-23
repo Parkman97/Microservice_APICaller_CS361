@@ -2,7 +2,12 @@
 
 ## How to Request Data
 
-My microservice is setup to communicate through the use of sockets. In order to request data to my microservice you will need to create a socket that connects to port 65432 and IP address of 127.0.0.1. Then you need to send the parameters that you want as one continous string separated by commas(Take notice that if a parameter is not given then leave it blank). Below you can see an example string and microservice call. I have written the examples in javascript.
+My microservice is setup to communicate through the use of sockets. In order to request data to my microservice you will need to create a socket that connects to port 65432 and IP address of 127.0.0.1. Start the server up by running the command:
+```
+python Server.py
+``` 
+
+Then you need to send the parameters that you want as one continous string separated by commas(Take notice that if a parameter is not given then leave it blank). Below you can see an example string and microservice call. I have written the examples in javascript.
 
 ```
 Parameters (“article/blog, has_launch, news_site, date published, limit”)
